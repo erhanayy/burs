@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbMyadmModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DbMyadmEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tb_city" EntityType="DbMyadmModel.tb_city" />
+    <EntitySet Name="tb_contact" EntityType="DbMyadmModel.tb_contact" />
+    <EntitySet Name="tb_county" EntityType="DbMyadmModel.tb_county" />
+    <EntitySet Name="tb_producer" EntityType="DbMyadmModel.tb_producer" />
+    <EntitySet Name="tb_user" EntityType="DbMyadmModel.tb_user" />
+    <AssociationSet Name="FK_tb_county_tb_city" Association="DbMyadmModel.FK_tb_county_tb_city">
+      <End Role="tb_city" EntitySet="tb_city" />
+      <End Role="tb_county" EntitySet="tb_county" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_producer_tb_city" Association="DbMyadmModel.FK_tb_producer_tb_city">
+      <End Role="tb_city" EntitySet="tb_city" />
+      <End Role="tb_producer" EntitySet="tb_producer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_producer_tb_contact" Association="DbMyadmModel.FK_tb_producer_tb_contact">
+      <End Role="tb_contact" EntitySet="tb_contact" />
+      <End Role="tb_producer" EntitySet="tb_producer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_producer_tb_county" Association="DbMyadmModel.FK_tb_producer_tb_county">
+      <End Role="tb_county" EntitySet="tb_county" />
+      <End Role="tb_producer" EntitySet="tb_producer" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tb_city">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="tb_county" Relationship="DbMyadmModel.FK_tb_county_tb_city" FromRole="tb_city" ToRole="tb_county" />
+    <NavigationProperty Name="tb_producer" Relationship="DbMyadmModel.FK_tb_producer_tb_city" FromRole="tb_city" ToRole="tb_producer" />
+  </EntityType>
+  <EntityType Name="tb_contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContactName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Adress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="GsmNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="tb_producer" Relationship="DbMyadmModel.FK_tb_producer_tb_contact" FromRole="tb_contact" ToRole="tb_producer" />
+  </EntityType>
+  <EntityType Name="tb_county">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="tb_city" Relationship="DbMyadmModel.FK_tb_county_tb_city" FromRole="tb_county" ToRole="tb_city" />
+    <NavigationProperty Name="tb_producer" Relationship="DbMyadmModel.FK_tb_producer_tb_county" FromRole="tb_county" ToRole="tb_producer" />
+  </EntityType>
+  <EntityType Name="tb_producer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContanctId" Type="Int32" />
+    <Property Name="CityId" Type="Int32" />
+    <Property Name="CountyId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="tb_city" Relationship="DbMyadmModel.FK_tb_producer_tb_city" FromRole="tb_producer" ToRole="tb_city" />
+    <NavigationProperty Name="tb_contact" Relationship="DbMyadmModel.FK_tb_producer_tb_contact" FromRole="tb_producer" ToRole="tb_contact" />
+    <NavigationProperty Name="tb_county" Relationship="DbMyadmModel.FK_tb_producer_tb_county" FromRole="tb_producer" ToRole="tb_county" />
+  </EntityType>
+  <EntityType Name="tb_user">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_tb_county_tb_city">
+    <End Type="DbMyadmModel.tb_city" Role="tb_city" Multiplicity="1" />
+    <End Type="DbMyadmModel.tb_county" Role="tb_county" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_city">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tb_county">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_producer_tb_city">
+    <End Type="DbMyadmModel.tb_city" Role="tb_city" Multiplicity="0..1" />
+    <End Type="DbMyadmModel.tb_producer" Role="tb_producer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_city">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tb_producer">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_producer_tb_contact">
+    <End Type="DbMyadmModel.tb_contact" Role="tb_contact" Multiplicity="0..1" />
+    <End Type="DbMyadmModel.tb_producer" Role="tb_producer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tb_producer">
+        <PropertyRef Name="ContanctId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_producer_tb_county">
+    <End Type="DbMyadmModel.tb_county" Role="tb_county" Multiplicity="0..1" />
+    <End Type="DbMyadmModel.tb_producer" Role="tb_producer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_county">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tb_producer">
+        <PropertyRef Name="CountyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

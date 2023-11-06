@@ -1,0 +1,213 @@
+﻿@model MyAdmin.Models.tb_producer
+
+@{
+    ViewBag.Title = "Üretici İşlemleri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section page_level_plugins_scripts{
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/static/global/plugins/bootstrap-select/js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="~/static/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
+    <script src="~/static/global/plugins/jquery.input-ip-address-control-1.0.min.js" type="text/javascript"></script>
+    <script src="~/static/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+}
+
+@section page_level_scripts{
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="~/static/pages/scripts/components-bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="~/static/pages/scripts/form-input-mask.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+}
+
+@section page_level_plugins_css{
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="~/static/global/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+}
+
+@section custom_scripts {
+    <script type="text/javascript">
+        $('#basic').on('shown.bs.modal', function (e) {
+            var sid = $(e.relatedTarget).data('id');
+            var name = $(e.relatedTarget).data('name');
+            $("#modalName").html(name);
+            $("#confirm_ok").attr('href', "../Producer/Delete/" + sid);
+        });
+
+        $('#btnSave').click(function (event) {
+            return $('#prdform').valid();
+        });
+
+        $('#prdform').validate({            
+            rules: {
+                'Name': {
+                    minlength: 3,
+                    maxlength: 100,
+                    required: true
+                }
+            },
+            invalidHandler: function (event, validator) {                
+                var error = $('.alert-danger', $(this));
+                error.show();
+                App.scrollTo(error, -200);
+                return false;
+            },
+            highlight: function (element) {
+                $(element)
+                    .closest('.form-group').addClass('has-error');
+            },
+            unhighlight: function (element) {
+                $(element)
+                    .closest('.form-group').removeClass('has-error');
+            },
+            success: function (label) {
+                label
+                    .closest('.form-group').removeClass('has-error');
+            },
+            submitHandler: function (form) {
+                $('.alert-danger', $(this)).hide();
+                return true;
+            },
+            errorPlacement: function (error, element) { }
+        });
+    </script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="tabbable-line boxless tabbable-reversed">
+            <div class="tab-pane active" id="tab_1">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-equalizer font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki bold uppercase">Üretici İşlemleri</span>
+                            <span class="caption-helper">Yeni Üretici Tanımla</span>
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse" data-original-title="Gizle/Göster"> </a>
+                            <a href="" class="remove" data-original-title="Kapat"> </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <form action="@Url.Action("Create", "Producer")" class="horizontal-form" method="post" id="prdform">
+                            <div class="form-body">
+                                <h3 class="form-section">Üretici Kartı</h3>
+                                
+                                <div class="alert alert-danger display-hide">
+                                    <button class="close" data-close="alert"></button>Zorunlu alanlar doldurulmamış.
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Üretici Adı</label>
+                                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @tabindex = "1" })
+                                            @Html.HiddenFor(m => m.Id)
+                                            @Html.HiddenFor(m => m.ContanctId)
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Yetkili Kişi Adı</label>
+                                            @Html.TextBoxFor(m => m.tb_contact.ContactName, new { @class = "form-control", @tabindex = "2" })
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Telefon No</label>
+                                            @Html.TextBoxFor(m => m.tb_contact.PhoneNumber, new { @class = "form-control mask_phone", @tabindex = "3" })
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Gsm No</label>
+                                            @Html.TextBoxFor(m => m.tb_contact.GsmNumber, new { @class = "form-control mask_phone", @tabindex = "4" })
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Fax No</label>
+                                            @Html.TextBoxFor(m => m.tb_contact.Fax, new { @class = "form-control mask_phone", @tabindex = "5" })
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Email</label>
+                                            @Html.TextBoxFor(m => m.tb_contact.Email, new { @class = "form-control", @tabindex = "6" })
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <h3 class="form-section">Adres</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>İl</label>
+                                            @Html.DropDownListFor(m => m.CityId,
+                                              new SelectList(ViewBag.CityList, "Id", "Name"),
+                                              new { @class = "bs-select form-control", @data_live_search = "true", @data_live_search_style = "startsWith", @data_size = "8", @onchange = "FillCity()", @id = "drpCity", @tabindex = "7" })
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>İlçe</label>
+                                            @Html.DropDownListFor(m => m.CountyId,
+                                              new SelectList(ViewBag.CountyList, "Id", "Name"),
+                                              new { @class = "bs-select form-control", @data_live_search = "true", @data_live_search_style = "startsWith", @data_size = "8", @id = "drpCounty", @tabindex = "8" })
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-12 ">
+                                        <div class="form-group">
+                                            <label>Mahalle-Sokak</label>
+                                            @Html.TextBoxFor(m => m.tb_contact.Adress, new { @class = "form-control", @tabindex = "9" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                            </div>
+                            <div class="form-actions right">
+                                <button type="button" class="btn default"
+                                        onclick="location.href='@Url.Action("Create", "Producer")'" tabindex="10">
+                                    İptal
+                                </button>
+                                <button type="submit" class="btn default" formnovalidate formaction="/Producer/Search" tabindex="11">
+                                    <i class="fa fa-search"></i> Ara
+                                </button>
+                                <button type="submit" class="btn blue" id="btnSave" tabindex="12">
+                                    <i class="fa fa-check"></i> Kaydet
+                                </button>
+                            </div>
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.Action("GetAllProducers")
+    </div>
+</div>

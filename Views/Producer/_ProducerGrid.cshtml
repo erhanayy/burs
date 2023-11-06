@@ -1,0 +1,104 @@
+﻿@model IEnumerable<MyAdmin.Models.tb_producer>
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-list font-blue-hoki"></i>
+            <span class="caption-subject font-blue-hoki bold uppercase">Üretici Listesi</span>
+        </div>
+        <div class="actions">
+            <a class="btn btn-circle btn-icon-only btn-default top" href="#" id="exportword" rel="tooltip" title="" data-toggle="tooltip" data-original-title="Word Olarak Kaydet">
+                <i class="fa fa-file-word-o"></i>
+            </a>
+            <a class="btn btn-circle btn-icon-only btn-default top" href="#" id="exportexcel" rel="tooltip" title="" data-toggle="tooltip" data-original-title="Excel Olarak Kaydet">
+                <i class="fa fa-file-excel-o"></i>
+            </a>
+            <a class="btn btn-circle btn-icon-only btn-default" href="#" id="exportpdf" rel="tooltip" title="" data-toggle="tooltip" data-original-title="Pdf Olarak Kaydet">
+                <i class="fa fa-file-pdf-o"></i>
+            </a>
+            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+            <table class="table table-hover exportable tablesorter">
+                <thead>
+                    <tr>
+                        <th data-field="NoExport" class="nosort-field"></th>
+                        <th>Üretici Adı</th>
+                        <th>Yetkili Kişi</th>
+                        <th>Telefon</th>
+                        <th>Gsm</th>
+                        <th>Fax</th>
+                        <th>E-Mail</th>
+                        <th>İl</th>
+                        <th>İlçe</th>
+                        <th>Sokak</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-left text-nowrap gridEditDeleteButtons">
+                                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-outline btn-circle btn-xs blue-hoki">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a href="#basic" data-toggle="modal" data-id="@item.Id" data-name="@item.Name"
+                                   class="btn btn-outline btn-circle dark btn-xs blue-hoki">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_contact.ContactName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_contact.PhoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_contact.GsmNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_contact.Fax)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_contact.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_city.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_county.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_contact.Adress)
+                            </td>                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">Kayıt Silinecek</h4>
+                        </div>
+                        <div class="modal-body"> <span id="modalName"></span> isimli kayıt silinecek.Emin Misiniz !!! </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn dark btn-outline" data-dismiss="modal">Hayır</button>
+                            <a href="#" class="btn green" id="confirm_ok">Evet</a>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+        </div>
+    </div>
+</div>

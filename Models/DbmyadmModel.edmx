@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbMyadmModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_city">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="date" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="UpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactName" Type="varchar" MaxLength="100" />
+          <Property Name="Adress" Type="varchar" MaxLength="250" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="GsmNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Fax" Type="varchar" MaxLength="20" />
+          <Property Name="CreationDate" Type="date" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="UpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_county">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="date" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="UpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_producer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContanctId" Type="int" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="CountyId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="CreationDate" Type="date" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="UpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="CreationDate" Type="date" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="UpdatedBy" Type="int" />
+        </EntityType>
+        <Association Name="FK_tb_county_tb_city">
+          <End Role="tb_city" Type="Self.tb_city" Multiplicity="1" />
+          <End Role="tb_county" Type="Self.tb_county" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_city">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_county">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_producer_tb_city">
+          <End Role="tb_city" Type="Self.tb_city" Multiplicity="0..1" />
+          <End Role="tb_producer" Type="Self.tb_producer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_city">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_producer">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_producer_tb_contact">
+          <End Role="tb_contact" Type="Self.tb_contact" Multiplicity="0..1" />
+          <End Role="tb_producer" Type="Self.tb_producer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_contact">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_producer">
+              <PropertyRef Name="ContanctId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_producer_tb_county">
+          <End Role="tb_county" Type="Self.tb_county" Multiplicity="0..1" />
+          <End Role="tb_producer" Type="Self.tb_producer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_county">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_producer">
+              <PropertyRef Name="CountyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbMyadmModelStoreContainer">
+          <EntitySet Name="tb_city" EntityType="Self.tb_city" Schema="burs" store:Type="Tables" />
+          <EntitySet Name="tb_contact" EntityType="Self.tb_contact" Schema="burs" store:Type="Tables" />
+          <EntitySet Name="tb_county" EntityType="Self.tb_county" Schema="burs" store:Type="Tables" />
+          <EntitySet Name="tb_producer" EntityType="Self.tb_producer" Schema="burs" store:Type="Tables" />
+          <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="burs" store:Type="Tables" />
+          <AssociationSet Name="FK_tb_county_tb_city" Association="Self.FK_tb_county_tb_city">
+            <End Role="tb_city" EntitySet="tb_city" />
+            <End Role="tb_county" EntitySet="tb_county" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_producer_tb_city" Association="Self.FK_tb_producer_tb_city">
+            <End Role="tb_city" EntitySet="tb_city" />
+            <End Role="tb_producer" EntitySet="tb_producer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_producer_tb_contact" Association="Self.FK_tb_producer_tb_contact">
+            <End Role="tb_contact" EntitySet="tb_contact" />
+            <End Role="tb_producer" EntitySet="tb_producer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_producer_tb_county" Association="Self.FK_tb_producer_tb_county">
+            <End Role="tb_county" EntitySet="tb_county" />
+            <End Role="tb_producer" EntitySet="tb_producer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbMyadmModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DbMyadmEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_city" EntityType="DbMyadmModel.tb_city" />
+          <EntitySet Name="tb_contact" EntityType="DbMyadmModel.tb_contact" />
+          <EntitySet Name="tb_county" EntityType="DbMyadmModel.tb_county" />
+          <EntitySet Name="tb_producer" EntityType="DbMyadmModel.tb_producer" />
+          <EntitySet Name="tb_user" EntityType="DbMyadmModel.tb_user" />
+          <AssociationSet Name="FK_tb_county_tb_city" Association="DbMyadmModel.FK_tb_county_tb_city">
+            <End Role="tb_city" EntitySet="tb_city" />
+            <End Role="tb_county" EntitySet="tb_county" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_producer_tb_city" Association="DbMyadmModel.FK_tb_producer_tb_city">
+            <End Role="tb_city" EntitySet="tb_city" />
+            <End Role="tb_producer" EntitySet="tb_producer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_producer_tb_contact" Association="DbMyadmModel.FK_tb_producer_tb_contact">
+            <End Role="tb_contact" EntitySet="tb_contact" />
+            <End Role="tb_producer" EntitySet="tb_producer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_producer_tb_county" Association="DbMyadmModel.FK_tb_producer_tb_county">
+            <End Role="tb_county" EntitySet="tb_county" />
+            <End Role="tb_producer" EntitySet="tb_producer" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tb_city">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tb_county" Relationship="DbMyadmModel.FK_tb_county_tb_city" FromRole="tb_city" ToRole="tb_county" />
+          <NavigationProperty Name="tb_producer" Relationship="DbMyadmModel.FK_tb_producer_tb_city" FromRole="tb_city" ToRole="tb_producer" />
+        </EntityType>
+        <EntityType Name="tb_contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Adress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GsmNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tb_producer" Relationship="DbMyadmModel.FK_tb_producer_tb_contact" FromRole="tb_contact" ToRole="tb_producer" />
+        </EntityType>
+        <EntityType Name="tb_county">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tb_city" Relationship="DbMyadmModel.FK_tb_county_tb_city" FromRole="tb_county" ToRole="tb_city" />
+          <NavigationProperty Name="tb_producer" Relationship="DbMyadmModel.FK_tb_producer_tb_county" FromRole="tb_county" ToRole="tb_producer" />
+        </EntityType>
+        <EntityType Name="tb_producer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContanctId" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="CountyId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <NavigationProperty Name="tb_city" Relationship="DbMyadmModel.FK_tb_producer_tb_city" FromRole="tb_producer" ToRole="tb_city" />
+          <NavigationProperty Name="tb_contact" Relationship="DbMyadmModel.FK_tb_producer_tb_contact" FromRole="tb_producer" ToRole="tb_contact" />
+          <NavigationProperty Name="tb_county" Relationship="DbMyadmModel.FK_tb_producer_tb_county" FromRole="tb_producer" ToRole="tb_county" />
+        </EntityType>
+        <EntityType Name="tb_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_tb_county_tb_city">
+          <End Type="DbMyadmModel.tb_city" Role="tb_city" Multiplicity="1" />
+          <End Type="DbMyadmModel.tb_county" Role="tb_county" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_city">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_county">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_producer_tb_city">
+          <End Type="DbMyadmModel.tb_city" Role="tb_city" Multiplicity="0..1" />
+          <End Type="DbMyadmModel.tb_producer" Role="tb_producer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_city">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_producer">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_producer_tb_contact">
+          <End Type="DbMyadmModel.tb_contact" Role="tb_contact" Multiplicity="0..1" />
+          <End Type="DbMyadmModel.tb_producer" Role="tb_producer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_contact">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_producer">
+              <PropertyRef Name="ContanctId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_producer_tb_county">
+          <End Type="DbMyadmModel.tb_county" Role="tb_county" Multiplicity="0..1" />
+          <End Type="DbMyadmModel.tb_producer" Role="tb_producer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_county">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_producer">
+              <PropertyRef Name="CountyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbMyadmModelStoreContainer" CdmEntityContainer="DbMyadmEntities">
+          <EntitySetMapping Name="tb_city">
+            <EntityTypeMapping TypeName="DbMyadmModel.tb_city">
+              <MappingFragment StoreEntitySet="tb_city">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_contact">
+            <EntityTypeMapping TypeName="DbMyadmModel.tb_contact">
+              <MappingFragment StoreEntitySet="tb_contact">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="GsmNumber" ColumnName="GsmNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_county">
+            <EntityTypeMapping TypeName="DbMyadmModel.tb_county">
+              <MappingFragment StoreEntitySet="tb_county">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_producer">
+            <EntityTypeMapping TypeName="DbMyadmModel.tb_producer">
+              <MappingFragment StoreEntitySet="tb_producer">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="ContanctId" ColumnName="ContanctId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_user">
+            <EntityTypeMapping TypeName="DbMyadmModel.tb_user">
+              <MappingFragment StoreEntitySet="tb_user">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
