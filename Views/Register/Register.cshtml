@@ -1,0 +1,370 @@
+﻿@*@model MyAdmin.Models.Contact*@
+@model YourNamespace.ViewModels.RegisterViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>Yönetim Paneli | Kullanıcı Kayıt Ekranı</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="~/static/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/static/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/static/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/static/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="~/static/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/static/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="~/static/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="~/static/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="~/static/pages/css/login-3.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- END HEAD -->
+<body class="login">
+    <!-- BEGIN LOGO -->
+    <div class="logo">
+        <a href="index.html">
+            <img src="~/images/login_128.png" alt="" />
+        </a>
+    </div>
+    <!-- END LOGO -->
+    <!-- BEGIN LOGIN -->
+    <div class="content">
+        <!-- BEGIN LOGIN FORM -->
+        <div id="alerts_area"> </div>
+        <form class="login-form" action="@Url.Action("Check", "Register")" method="post" id="frm">
+            <h3 class="form-title">Kullanıcı Kayıt Ekranı</h3>
+            <div class="alert alert-danger display-hide">
+                <button class="close" data-close="alert"></button>
+                <span> HATALAR BURAYA </span>
+            </div>
+            <label class="control-label">Kullanıcı Bilgileri</label>
+            <div class="form-group">
+                <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                <label class="control-label visible-ie8 visible-ie9">Ad</label>
+                <div class="input-icon">
+                    <i class="fa fa-user"></i>
+                    @Html.TextBoxFor(m => m.Contact.Name, new { @class = "form-control placeholder-no-fix soe", @placeholder = "Ad", @autocomplete = "off", @tabindex = "1", onkeypress = "return isLetterKey(event)", oninput = "formatInput(event)" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Soyad</label>
+                <div class="input-icon">
+                    <i class="fa fa-user"></i>
+                    @Html.TextBoxFor(m => m.Contact.Surname, new { @class = "form-control placeholder-no-fix soe", @placeholder = "Soyad", @autocomplete = "off", @tabindex = "2", onkeypress = "return isLetterKey(event)", oninput = "uppercaseNoSpace(event)" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Email</label>
+                <div class="input-icon">
+                    <i class="fa fa-mail-reply"></i>
+                    @Html.TextBoxFor(m => m.Contact.Email, new { @class = "form-control placeholder-no-fix soe", @placeholder = "E-posta", @autocomplete = "off", @tabindex = "3" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Telefon</label>
+                <div class="input-icon">
+                    <i class="fa fa-phone"></i>
+                    @Html.TextBoxFor(m => m.Contact.Phone, new { @class = "form-control placeholder-no-fix soe", @placeholder = "Telefon Numarası", @autocomplete = "off", @tabindex = "4", data_mask = "(999) 999-9999", onkeypress = "return validateMaxCharacters(this.value, 10) && isNumberKey(event)" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Şifre</label>
+                <div class="input-icon">
+                    <i class="fa fa-lock"></i>
+                    @*@Html.PasswordFor(m => m.Password, new { @class = "form-control placeholder-no-fix soe", @placeholder = "Şifre", @autocomplete = "off", @tabindex = "2" })*@
+                    <input type="password" name="Password" id="Password" class="form-control placeholder-no-fix soe" placeholder="Şifre" autocomplete="off" tabindex="5" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Şifre Tekrar</label>
+                <div class="input-icon">
+                    <i class="fa fa-lock"></i>
+                    <!--şifre kontrolü için bir input-->
+                    <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control placeholder-no-fix soe" placeholder="Şifre Tekrar" autocomplete="off" tabindex="6" />
+                </div>
+            </div>
+            <label class="control-label">Hesap türü</label>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Hesap türü</label>
+                <div class="input-icon">
+                    <i class="fa fa-list"></i>
+                    @Html.DropDownListFor(m => m.SelectedContactTypeId, new SelectList(Model.ContactTypes, "Id", "Description"), new { @class = "form-control placeholder-no-fix soe", @placeholder = "Hesap türü", @autocomplete = "off", @tabindex = "7", id = "ContactTypeDropdown" })
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn green pull-right" id="btnLogin" tabindex="11"> Kayıt Ol </button>
+                <a href="@Url.Action("Login", "Login")" class="btn green pull-left" id="btnLogin" tabindex="12">Giriş</a>
+                <br />
+            </div>
+        </form>
+        <!-- END LOGIN FORM -->
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <!-- END LOGIN -->
+    <!--[if lt IE 9]>
+    <script src="~/static/global/plugins/respond.min.js"></script>
+    <script src="~/static/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="~/static/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/static/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/static/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/static/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="~/static/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/static/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/static/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/static/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/static/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="~/static/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <!-- END THEME LAYOUT SCRIPTS -->
+    <script type="text/javascript">
+
+        jQuery(document).ready(function () {
+            var res = @Html.Raw(Json.Encode(TempData["ShowAlert"]));
+            var mes = @Html.Raw(Json.Encode(TempData["AlertMessage"]));
+            if(res=="1")
+            {
+                App.alert({
+                    container: '#alerts_area',
+                    place: 'append', // append or prepent in container
+                    type: 'warning',  // info-success-danger-warning
+                    message: mes,  // alert's message
+                    close: '1', // make alert closable
+                    reset: '1', // close all previouse alerts first
+                    focus: '1', // auto scroll to the alert after shown
+                    closeInSeconds: '7', // auto close after defined seconds
+                    icon : ''
+                });
+                updateTempData("ShowAlert","0");
+            }
+        });
+
+        function updateTempData(pn,pv){
+            var _data = {n: pn,v: pv};
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SetTempData", "Base")',
+                data: JSON.stringify(_data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function() {
+                }
+            });
+        }
+
+        $('.soe').keydown(function(event) {
+            // enter has keyCode = 13, change it if you want to use another button
+            if (event.keyCode == 13) {
+                this.form.submit();
+                return false;
+            }
+        });
+
+        $('#btnLogin').click(function (event) {
+            return $('#frm').valid();
+        });
+
+
+        $.validator.addMethod("notEqual", function (value, element, param) {
+            return this.optional(element) || value !== $(param).val();
+        });
+
+
+        $('#frm').validate({
+            rules: {
+                'Contact.Name': {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 40
+                    // Diğer kuralları ekleyebilirsiniz
+                },
+                'Contact.Surname': {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 40
+                    // Diğer kuralları ekleyebilirsiniz
+                },
+                'Contact.Email': {
+                    required: true,
+                    email: true,
+                    // Diğer kuralları ekleyebilirsiniz
+                },
+                'Contact.Phone': {
+                    minlength: 10,
+                    required: true,
+                    // Diğer kuralları ekleyebilirsiniz
+                },
+                'Password': {
+                    required: true,
+                    minlength: 6,
+                    maxlength: 30,
+                    notEqual: '#Email'
+                    // Diğer kuralları ekleyebilirsiniz
+                },
+                'ConfirmPassword': {
+                    required: true,
+                    equalTo: '#Password', // Password alanı ile eşleşmeli
+                    // Diğer kuralları ekleyebilirsiniz
+                },
+            },
+            messages: {
+                'Contact.Name': {
+                    required: 'İsim alanı boş bırakılamaz.',
+                    minlength: 'İsim en az {0} karakter olmalıdır.',
+                    maxlength: 'İsim en fazla {0} karakter olmalıdır.'
+                    // Diğer hata mesajlarını ekleyebilirsiniz
+                },
+                'Contact.Surname': {
+                    required: 'Soyisim alanı boş bırakılamaz.',
+                    minlength: 'Soyisim en az {0} karakter olmalıdır.',
+                    maxlength: 'Soyisim en fazla {0} karakter olmalıdır.'
+                    // Diğer hata mesajlarını ekleyebilirsiniz
+                },
+                'Contact.Email': {
+                    required: 'E-posta alanı boş bırakılamaz.',
+                    email: 'Geçerli bir e-posta adresi giriniz.'
+                    // Diğer hata mesajlarını ekleyebilirsiniz
+                },
+                'Contact.Phone': {
+                    required: 'Telefon numarası alanı boş bırakılamaz.',
+                    minlength: 'lütfen geçerli bir telefon numarası giriniz.'
+                    // Diğer hata mesajlarını ekleyebilirsiniz
+                },
+                'Password': {
+                    required: 'Şifre alanı boş bırakılamaz.',
+                    minlength: 'Şifre en az {0} karakter olmalıdır.',
+                    maxlength: 'Şifre en fazla {0} karakter olmalıdır.',
+                    notEqual: 'Şifre, e-posta ile aynı olamaz.'
+                    // Diğer hata mesajlarını ekleyebilirsiniz
+                },
+                'ConfirmPassword': {
+                    required: 'Şifre tekrarı alanı boş bırakılamaz.',
+                    equalTo: 'Şifreler uyuşmuyor. Lütfen aynı şifreyi tekrar giriniz.'
+                    // Diğer hata mesajlarını ekleyebilirsiniz
+                },
+            },
+
+            invalidHandler: function (event, validator) {
+                var error = $('.alert-danger', $(this));
+                error.empty();
+
+                error.append('<button class="close" data-close="alert"></button>');
+
+                var errors = validator.errorMap;
+
+                $.each(errors, function (key, value) {
+
+                    error.append(value);
+                });
+                error.show();
+                App.scrollTo(error, -200);
+                return false;
+            },
+
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass('has-error');
+            },
+            unhighlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-error');
+            },
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error');
+
+                $('.alert-danger span').text($('#UserName').val());
+            },
+            submitHandler: function (form) {
+                $('.alert-danger', $(this)).hide();
+                return true;
+            },
+            errorPlacement: function (error, element) { }
+        });
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+
+        function validateMaxCharacters(textBoxValue, maxCharacters) {
+            var currentLength = textBoxValue.length;
+
+            if (currentLength > maxCharacters - 1) {
+                return false;
+            }
+            return true;
+        }
+
+
+        function isLetterKey(event) {
+            var char = event.key;
+
+            if (!char.match(/^[A-Za-zçÇşŞğĞüÜöÖıİ ]$/) || (char === ' ' && event.target.value.endsWith(' '))) {
+                event.preventDefault();
+            }
+        }
+
+        function formatInput(event) {
+            var input = event.target;
+            var metin = input.value;
+
+            var guncellenmisMetin = metin.toLowerCase().replace(/\b\w/g, function (harf) {
+                return harf.toUpperCase();
+            });
+
+            input.value = guncellenmisMetin;
+        }
+
+        function uppercaseNoSpace(event) {
+            var input = event.target;
+            var metin = input.value;
+
+            var guncellenmisMetin = metin.replace(/\s/g, '').toUpperCase();
+
+            input.value = guncellenmisMetin;
+        }
+
+    </script>
+</body>
+</html>
+
+

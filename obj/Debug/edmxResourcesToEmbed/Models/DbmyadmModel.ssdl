@@ -1,5 +1,530 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DbMyadmModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CitizenCountryId" Type="int" Nullable="false" />
+    <Property Name="CitizenNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContactDocumentAggreement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactId" Type="int" Nullable="false" />
+    <Property Name="DocumentId" Type="int" Nullable="false" />
+    <Property Name="IsSigned" Type="bit" Nullable="false" />
+    <Property Name="SignedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContactType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContactTypeRel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactId" Type="int" Nullable="false" />
+    <Property Name="ContactTypeId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeclarationAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeclarationQuesitonId" Type="int" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="AnswerOrder" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeclarationQuesiton">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="QuestionOrder" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ContactTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeclarationQuestionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="LongText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DocumentTypeId" Type="int" Nullable="false" />
+    <Property Name="DocumentStageId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DocumentInstance">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactId" Type="int" Nullable="false" />
+    <Property Name="DocumentId" Type="int" Nullable="false" />
+    <Property Name="DocumentStageId" Type="int" Nullable="false" />
+    <Property Name="IsSigned" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DocumentStage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DocumentType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FileType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="IsRequired" Type="bit" Nullable="false" />
+    <Property Name="IsForScholar" Type="int" Nullable="false" />
+    <Property Name="IsForReference" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactId" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoginId" Type="int" Nullable="false" />
+    <Property Name="LastLoginTime" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Month">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RefenceResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReferenceId" Type="int" Nullable="false" />
+    <Property Name="ReferenceResultStatusId" Type="int" Nullable="false" />
+    <Property Name="ReferenceResultStatusRejectReasonId" Type="int" Nullable="false" />
+    <Property Name="ReferenceResultStatusRejectReasonDetail" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reference">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScholarRequestContactId" Type="int" Nullable="false" />
+    <Property Name="ReferenceContactId" Type="int" Nullable="false" />
+    <Property Name="RequestDate" Type="datetime" Nullable="false" />
+    <Property Name="ReferenceContactTypeId" Type="int" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="DistrictId" Type="int" Nullable="false" />
+    <Property Name="RegisterNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TeacherUniversity" Type="nvarchar" MaxLength="250" />
+    <Property Name="TeacherUniversityFaculty" Type="nvarchar" MaxLength="250" />
+    <Property Name="TeacherUniversityFacultyDepartment" Type="nvarchar" MaxLength="250" />
+    <Property Name="TeacherHighSchool" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReferenceContactType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReferenceDeclarationAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScholarRequestId" Type="int" Nullable="false" />
+    <Property Name="ReferenceId" Type="int" Nullable="false" />
+    <Property Name="DeclarationQuestionId" Type="int" Nullable="false" />
+    <Property Name="DeclarationAnswerId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReferenceFileUpload">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReferenceId" Type="int" Nullable="false" />
+    <Property Name="FileTypeId" Type="int" Nullable="false" />
+    <Property Name="UplodedFileData" Type="ntext" Nullable="false" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReferenceResultStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReferenceResultStatusRejectReason">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarBankAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="BankAccountNameSurname" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="BankAccountIban" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CretaionDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarchipGiverApprovalStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarchipGiverCreditCardInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScholarshipGiverContactId" Type="int" Nullable="false" />
+    <Property Name="CreditCardName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreditCardNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CVC2" Type="smallint" Nullable="false" />
+    <Property Name="ExpaireYear" Type="smallint" Nullable="false" />
+    <Property Name="ExpaireMonth" Type="smallint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarchipGiverCreditCardProvisining">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScholarchipGiverCreditCardInfoId" Type="int" Nullable="false" />
+    <Property Name="YearId" Type="int" Nullable="false" />
+    <Property Name="MonthId" Type="int" Nullable="false" />
+    <Property Name="MonthlyDonateAmount" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarchipGiverSelectScholar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OwnerGiverContactId" Type="int" Nullable="false" />
+    <Property Name="ScholarRequestId" Type="int" Nullable="false" />
+    <Property Name="YearId" Type="int" Nullable="false" />
+    <Property Name="SeasonId" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarDeclarationAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScholarRequestId" Type="int" Nullable="false" />
+    <Property Name="DeclarationQuestionId" Type="int" Nullable="false" />
+    <Property Name="DeclarationAnswerId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarFileUpload">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScholarRequestId" Type="int" Nullable="false" />
+    <Property Name="FileTypeId" Type="int" Nullable="false" />
+    <Property Name="UploadedFileData" Type="ntext" Nullable="false" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarReceives">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScholarContactId" Type="int" Nullable="false" />
+    <Property Name="YearId" Type="int" Nullable="false" />
+    <Property Name="SeasonId" Type="int" Nullable="false" />
+    <Property Name="MonthId" Type="int" Nullable="false" />
+    <Property Name="ReceivedAmount" Type="int" Nullable="false" />
+    <Property Name="ReceivedAmountDate" Type="datetime" Nullable="false" />
+    <Property Name="ScholarBankAccountId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarRequest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScholarContactId" Type="int" Nullable="false" />
+    <Property Name="RequestTime" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="YearId" Type="int" Nullable="false" />
+    <Property Name="SeasonId" Type="int" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="DistrictId" Type="int" Nullable="false" />
+    <Property Name="ScholarRequestStatusId" Type="int" Nullable="false" />
+    <Property Name="ScholarRequestRejectedReasonId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarRequestRejectReason">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarRequestSchoolInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScholarRequestId" Type="int" Nullable="false" />
+    <Property Name="SchoolTypeId" Type="int" Nullable="false" />
+    <Property Name="University" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="UniversityFaculty" Type="nvarchar" MaxLength="250" />
+    <Property Name="UniversityFacultyDepartment" Type="nvarchar" MaxLength="250" />
+    <Property Name="HighSchool" Type="nvarchar" MaxLength="250" />
+    <Property Name="HighSchoolDivision" Type="nvarchar" MaxLength="250" />
+    <Property Name="ClassDegree" Type="int" />
+    <Property Name="SchoolCountryId" Type="int" Nullable="false" />
+    <Property Name="SchoolCityId" Type="int" Nullable="false" />
+    <Property Name="SchoolDistrictId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarRequestStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Scholarship">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScholarshipOwnerContactId" Type="int" Nullable="false" />
+    <Property Name="ScholarshipName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ScholarshipDescription" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="YearId" Type="int" Nullable="false" />
+    <Property Name="SeasonId" Type="int" Nullable="false" />
+    <Property Name="GiverCount" Type="int" Nullable="false" />
+    <Property Name="GiverMonthlyDonateAmount" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ScholarCount" Type="int" Nullable="false" />
+    <Property Name="ScholarDonateAmount" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarshipGiver">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScholarshipGiverContactId" Type="int" Nullable="false" />
+    <Property Name="ScholarshipGiverApprovalStatusId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SchoolType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Season">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YearId" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="int" Nullable="false" />
+    <Property Name="SeasonMonthCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SystemSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CurrentYearId" Type="int" Nullable="false" />
+    <Property Name="CurrentSeasonId" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="tb_city">
     <Key>
       <PropertyRef Name="Id" />
@@ -65,6 +590,1321 @@
     <Property Name="UpdatedDate" Type="date" />
     <Property Name="UpdatedBy" Type="int" />
   </EntityType>
+  <EntityType Name="Year">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_City_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contact_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="CitizenCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactDocumentAggreement_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="ContactDocumentAggreement" Type="Self.ContactDocumentAggreement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactDocumentAggreement">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactDocumentAggreement_Document">
+    <End Role="Document" Type="Self.Document" Multiplicity="1" />
+    <End Role="ContactDocumentAggreement" Type="Self.ContactDocumentAggreement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactDocumentAggreement">
+        <PropertyRef Name="DocumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactDocumentAggreement_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ContactDocumentAggreement" Type="Self.ContactDocumentAggreement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactDocumentAggreement">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactDocumentAggreement_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ContactDocumentAggreement" Type="Self.ContactDocumentAggreement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactDocumentAggreement">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactTypeRel_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="ContactTypeRel" Type="Self.ContactTypeRel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactTypeRel">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactTypeRel_ContactType">
+    <End Role="ContactType" Type="Self.ContactType" Multiplicity="1" />
+    <End Role="ContactTypeRel" Type="Self.ContactTypeRel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContactType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactTypeRel">
+        <PropertyRef Name="ContactTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactTypeRel_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="ContactTypeRel" Type="Self.ContactTypeRel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactTypeRel">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactTypeRel_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+    <End Role="ContactTypeRel" Type="Self.ContactTypeRel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactTypeRel">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeclarationAnswer_DeclarationQuesiton">
+    <End Role="DeclarationQuesiton" Type="Self.DeclarationQuesiton" Multiplicity="1" />
+    <End Role="DeclarationAnswer" Type="Self.DeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeclarationQuesiton">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DeclarationAnswer">
+        <PropertyRef Name="DeclarationQuesitonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeclarationAnswer_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="DeclarationAnswer" Type="Self.DeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DeclarationAnswer">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeclarationAnswer_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="DeclarationAnswer" Type="Self.DeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DeclarationAnswer">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeclarationQuesiton_ContactType">
+    <End Role="ContactType" Type="Self.ContactType" Multiplicity="1" />
+    <End Role="DeclarationQuesiton" Type="Self.DeclarationQuesiton" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContactType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DeclarationQuesiton">
+        <PropertyRef Name="ContactTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeclarationQuesiton_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="DeclarationQuesiton" Type="Self.DeclarationQuesiton" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DeclarationQuesiton">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeclarationQuesiton_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="DeclarationQuesiton" Type="Self.DeclarationQuesiton" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DeclarationQuesiton">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_District_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="District" Type="Self.District" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="District">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_DocumentStage">
+    <End Role="DocumentStage" Type="Self.DocumentStage" Multiplicity="1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentStage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="DocumentStageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_DocumentType">
+    <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="DocumentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentInstance_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="DocumentInstance" Type="Self.DocumentInstance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentInstance">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentInstance_Document">
+    <End Role="Document" Type="Self.Document" Multiplicity="1" />
+    <End Role="DocumentInstance" Type="Self.DocumentInstance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentInstance">
+        <PropertyRef Name="DocumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentInstance_DocumentStage">
+    <End Role="DocumentStage" Type="Self.DocumentStage" Multiplicity="1" />
+    <End Role="DocumentInstance" Type="Self.DocumentInstance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentStage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentInstance">
+        <PropertyRef Name="DocumentStageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentInstance_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="DocumentInstance" Type="Self.DocumentInstance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentInstance">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentInstance_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="DocumentInstance" Type="Self.DocumentInstance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentInstance">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Login_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="Login" Type="Self.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginLog_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="LoginLog" Type="Self.LoginLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LoginLog">
+        <PropertyRef Name="LoginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefenceResult_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="RefenceResult" Type="Self.RefenceResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefenceResult">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefenceResult_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="RefenceResult" Type="Self.RefenceResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefenceResult">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefenceResult_RefenceResult">
+    <End Role="ReferenceResultStatusRejectReason" Type="Self.ReferenceResultStatusRejectReason" Multiplicity="1" />
+    <End Role="RefenceResult" Type="Self.RefenceResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReferenceResultStatusRejectReason">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefenceResult">
+        <PropertyRef Name="ReferenceResultStatusRejectReasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefenceResult_Reference">
+    <End Role="Reference" Type="Self.Reference" Multiplicity="1" />
+    <End Role="RefenceResult" Type="Self.RefenceResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefenceResult">
+        <PropertyRef Name="ReferenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefenceResult_ReferenceResultStatus">
+    <End Role="ReferenceResultStatus" Type="Self.ReferenceResultStatus" Multiplicity="1" />
+    <End Role="RefenceResult" Type="Self.RefenceResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReferenceResultStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RefenceResult">
+        <PropertyRef Name="ReferenceResultStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Reference" Type="Self.Reference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reference">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="Reference" Type="Self.Reference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reference">
+        <PropertyRef Name="ScholarRequestContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Contact1">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="Reference" Type="Self.Reference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reference">
+        <PropertyRef Name="ReferenceContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Reference" Type="Self.Reference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reference">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_District">
+    <End Role="District" Type="Self.District" Multiplicity="1" />
+    <End Role="Reference" Type="Self.Reference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reference">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="Reference" Type="Self.Reference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reference">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="Reference" Type="Self.Reference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reference">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reference_ReferenceContactType">
+    <End Role="ReferenceContactType" Type="Self.ReferenceContactType" Multiplicity="1" />
+    <End Role="Reference" Type="Self.Reference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReferenceContactType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reference">
+        <PropertyRef Name="ReferenceContactTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceDeclarationAnswer_DeclarationAnswer">
+    <End Role="DeclarationAnswer" Type="Self.DeclarationAnswer" Multiplicity="1" />
+    <End Role="ReferenceDeclarationAnswer" Type="Self.ReferenceDeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeclarationAnswer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReferenceDeclarationAnswer">
+        <PropertyRef Name="DeclarationAnswerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceDeclarationAnswer_DeclarationQuesiton">
+    <End Role="DeclarationQuesiton" Type="Self.DeclarationQuesiton" Multiplicity="1" />
+    <End Role="ReferenceDeclarationAnswer" Type="Self.ReferenceDeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeclarationQuesiton">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReferenceDeclarationAnswer">
+        <PropertyRef Name="DeclarationQuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceDeclarationAnswer_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ReferenceDeclarationAnswer" Type="Self.ReferenceDeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReferenceDeclarationAnswer">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceDeclarationAnswer_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ReferenceDeclarationAnswer" Type="Self.ReferenceDeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReferenceDeclarationAnswer">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceDeclarationAnswer_Reference">
+    <End Role="Reference" Type="Self.Reference" Multiplicity="1" />
+    <End Role="ReferenceDeclarationAnswer" Type="Self.ReferenceDeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReferenceDeclarationAnswer">
+        <PropertyRef Name="ReferenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceDeclarationAnswer_ScholarRequest">
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="1" />
+    <End Role="ReferenceDeclarationAnswer" Type="Self.ReferenceDeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScholarRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReferenceDeclarationAnswer">
+        <PropertyRef Name="ScholarRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceFileUpload_FileType">
+    <End Role="FileType" Type="Self.FileType" Multiplicity="1" />
+    <End Role="ReferenceFileUpload" Type="Self.ReferenceFileUpload" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReferenceFileUpload">
+        <PropertyRef Name="FileTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceFileUpload_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ReferenceFileUpload" Type="Self.ReferenceFileUpload" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReferenceFileUpload">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceFileUpload_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ReferenceFileUpload" Type="Self.ReferenceFileUpload" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReferenceFileUpload">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceFileUpload_Reference">
+    <End Role="Reference" Type="Self.Reference" Multiplicity="1" />
+    <End Role="ReferenceFileUpload" Type="Self.ReferenceFileUpload" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reference">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReferenceFileUpload">
+        <PropertyRef Name="ReferenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarBankAccount_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarBankAccount" Type="Self.ScholarBankAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarBankAccount">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarBankAccount_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarBankAccount" Type="Self.ScholarBankAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarBankAccount">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverCreditCardInfo_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="ScholarchipGiverCreditCardInfo" Type="Self.ScholarchipGiverCreditCardInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverCreditCardInfo">
+        <PropertyRef Name="ScholarshipGiverContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverCreditCardInfo_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarchipGiverCreditCardInfo" Type="Self.ScholarchipGiverCreditCardInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverCreditCardInfo">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverCreditCardInfo_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarchipGiverCreditCardInfo" Type="Self.ScholarchipGiverCreditCardInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverCreditCardInfo">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverCreditCardProvisining_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarchipGiverCreditCardProvisining" Type="Self.ScholarchipGiverCreditCardProvisining" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverCreditCardProvisining">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverCreditCardProvisining_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarchipGiverCreditCardProvisining" Type="Self.ScholarchipGiverCreditCardProvisining" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverCreditCardProvisining">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverCreditCardProvisining_Month">
+    <End Role="Month" Type="Self.Month" Multiplicity="1" />
+    <End Role="ScholarchipGiverCreditCardProvisining" Type="Self.ScholarchipGiverCreditCardProvisining" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Month">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverCreditCardProvisining">
+        <PropertyRef Name="MonthId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverCreditCardProvisining_Year">
+    <End Role="Year" Type="Self.Year" Multiplicity="1" />
+    <End Role="ScholarchipGiverCreditCardProvisining" Type="Self.ScholarchipGiverCreditCardProvisining" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Year">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverCreditCardProvisining">
+        <PropertyRef Name="YearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverSelectScholar_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="ScholarchipGiverSelectScholar" Type="Self.ScholarchipGiverSelectScholar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverSelectScholar">
+        <PropertyRef Name="OwnerGiverContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverSelectScholar_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarchipGiverSelectScholar" Type="Self.ScholarchipGiverSelectScholar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverSelectScholar">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverSelectScholar_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarchipGiverSelectScholar" Type="Self.ScholarchipGiverSelectScholar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverSelectScholar">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverSelectScholar_ScholarRequest">
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="1" />
+    <End Role="ScholarchipGiverSelectScholar" Type="Self.ScholarchipGiverSelectScholar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScholarRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverSelectScholar">
+        <PropertyRef Name="ScholarRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverSelectScholar_Season">
+    <End Role="Season" Type="Self.Season" Multiplicity="1" />
+    <End Role="ScholarchipGiverSelectScholar" Type="Self.ScholarchipGiverSelectScholar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Season">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverSelectScholar">
+        <PropertyRef Name="SeasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarchipGiverSelectScholar_Year">
+    <End Role="Year" Type="Self.Year" Multiplicity="1" />
+    <End Role="ScholarchipGiverSelectScholar" Type="Self.ScholarchipGiverSelectScholar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Year">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarchipGiverSelectScholar">
+        <PropertyRef Name="YearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarDeclarationAnswer_DeclarationAnswer">
+    <End Role="DeclarationAnswer" Type="Self.DeclarationAnswer" Multiplicity="1" />
+    <End Role="ScholarDeclarationAnswer" Type="Self.ScholarDeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeclarationAnswer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarDeclarationAnswer">
+        <PropertyRef Name="DeclarationAnswerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarDeclarationAnswer_DeclarationQuesiton">
+    <End Role="DeclarationQuesiton" Type="Self.DeclarationQuesiton" Multiplicity="1" />
+    <End Role="ScholarDeclarationAnswer" Type="Self.ScholarDeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeclarationQuesiton">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarDeclarationAnswer">
+        <PropertyRef Name="DeclarationQuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarDeclarationAnswer_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarDeclarationAnswer" Type="Self.ScholarDeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarDeclarationAnswer">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarDeclarationAnswer_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarDeclarationAnswer" Type="Self.ScholarDeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarDeclarationAnswer">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarDeclarationAnswer_ScholarRequest">
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="1" />
+    <End Role="ScholarDeclarationAnswer" Type="Self.ScholarDeclarationAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScholarRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarDeclarationAnswer">
+        <PropertyRef Name="ScholarRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarFileUpload_FileType">
+    <End Role="FileType" Type="Self.FileType" Multiplicity="1" />
+    <End Role="ScholarFileUpload" Type="Self.ScholarFileUpload" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarFileUpload">
+        <PropertyRef Name="FileTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarFileUpload_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarFileUpload" Type="Self.ScholarFileUpload" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarFileUpload">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarFileUpload_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarFileUpload" Type="Self.ScholarFileUpload" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarFileUpload">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarFileUpload_ScholarRequest">
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="1" />
+    <End Role="ScholarFileUpload" Type="Self.ScholarFileUpload" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScholarRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarFileUpload">
+        <PropertyRef Name="ScholarRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarReceives_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="ScholarReceives" Type="Self.ScholarReceives" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarReceives">
+        <PropertyRef Name="ScholarContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarReceives_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarReceives" Type="Self.ScholarReceives" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarReceives">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarReceives_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarReceives" Type="Self.ScholarReceives" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarReceives">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarReceives_Month">
+    <End Role="Month" Type="Self.Month" Multiplicity="1" />
+    <End Role="ScholarReceives" Type="Self.ScholarReceives" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Month">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarReceives">
+        <PropertyRef Name="MonthId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarReceives_ScholarBankAccount">
+    <End Role="ScholarBankAccount" Type="Self.ScholarBankAccount" Multiplicity="1" />
+    <End Role="ScholarReceives" Type="Self.ScholarReceives" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScholarBankAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarReceives">
+        <PropertyRef Name="ScholarBankAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarReceives_ScholarReceives">
+    <End Role="ScholarReceives" Type="Self.ScholarReceives" Multiplicity="1" />
+    <End Role="ScholarReceives1" Type="Self.ScholarReceives" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ScholarReceives">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarReceives1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarReceives_Season">
+    <End Role="Season" Type="Self.Season" Multiplicity="1" />
+    <End Role="ScholarReceives" Type="Self.ScholarReceives" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Season">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarReceives">
+        <PropertyRef Name="SeasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarReceives_Year">
+    <End Role="Year" Type="Self.Year" Multiplicity="1" />
+    <End Role="ScholarReceives" Type="Self.ScholarReceives" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Year">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarReceives">
+        <PropertyRef Name="YearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequest_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequest">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequest_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequest">
+        <PropertyRef Name="ScholarContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequest_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequest">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequest_District">
+    <End Role="District" Type="Self.District" Multiplicity="1" />
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequest">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequest_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequest">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequest_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequest">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequest_ScholarRequestRejectReason">
+    <End Role="ScholarRequestRejectReason" Type="Self.ScholarRequestRejectReason" Multiplicity="1" />
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScholarRequestRejectReason">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequest">
+        <PropertyRef Name="ScholarRequestRejectedReasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequest_ScholarRequestStatus">
+    <End Role="ScholarRequestStatus" Type="Self.ScholarRequestStatus" Multiplicity="1" />
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScholarRequestStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequest">
+        <PropertyRef Name="ScholarRequestStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequest_Season">
+    <End Role="Season" Type="Self.Season" Multiplicity="1" />
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Season">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequest">
+        <PropertyRef Name="SeasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequest_Year">
+    <End Role="Year" Type="Self.Year" Multiplicity="1" />
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Year">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequest">
+        <PropertyRef Name="YearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequestSchoolInfo_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="ScholarRequestSchoolInfo" Type="Self.ScholarRequestSchoolInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequestSchoolInfo">
+        <PropertyRef Name="SchoolCityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequestSchoolInfo_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="ScholarRequestSchoolInfo" Type="Self.ScholarRequestSchoolInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequestSchoolInfo">
+        <PropertyRef Name="SchoolCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequestSchoolInfo_District">
+    <End Role="District" Type="Self.District" Multiplicity="1" />
+    <End Role="ScholarRequestSchoolInfo" Type="Self.ScholarRequestSchoolInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequestSchoolInfo">
+        <PropertyRef Name="SchoolDistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequestSchoolInfo_Login">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarRequestSchoolInfo" Type="Self.ScholarRequestSchoolInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequestSchoolInfo">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequestSchoolInfo_Login1">
+    <End Role="Login" Type="Self.Login" Multiplicity="1" />
+    <End Role="ScholarRequestSchoolInfo" Type="Self.ScholarRequestSchoolInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequestSchoolInfo">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequestSchoolInfo_ScholarRequest">
+    <End Role="ScholarRequest" Type="Self.ScholarRequest" Multiplicity="1" />
+    <End Role="ScholarRequestSchoolInfo" Type="Self.ScholarRequestSchoolInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScholarRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequestSchoolInfo">
+        <PropertyRef Name="ScholarRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarRequestSchoolInfo_SchoolType">
+    <End Role="SchoolType" Type="Self.SchoolType" Multiplicity="1" />
+    <End Role="ScholarRequestSchoolInfo" Type="Self.ScholarRequestSchoolInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarRequestSchoolInfo">
+        <PropertyRef Name="SchoolTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Scholarship_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="Scholarship" Type="Self.Scholarship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Scholarship">
+        <PropertyRef Name="ScholarshipOwnerContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Scholarship_Season">
+    <End Role="Season" Type="Self.Season" Multiplicity="1" />
+    <End Role="Scholarship" Type="Self.Scholarship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Season">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Scholarship">
+        <PropertyRef Name="SeasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Scholarship_Year">
+    <End Role="Year" Type="Self.Year" Multiplicity="1" />
+    <End Role="Scholarship" Type="Self.Scholarship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Year">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Scholarship">
+        <PropertyRef Name="YearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarshipGiver_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="ScholarshipGiver" Type="Self.ScholarshipGiver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarshipGiver">
+        <PropertyRef Name="ScholarshipGiverContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScholarshipGiver_ScholarchipGiverApprovalStatus">
+    <End Role="ScholarchipGiverApprovalStatus" Type="Self.ScholarchipGiverApprovalStatus" Multiplicity="1" />
+    <End Role="ScholarshipGiver" Type="Self.ScholarshipGiver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScholarchipGiverApprovalStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScholarshipGiver">
+        <PropertyRef Name="ScholarshipGiverApprovalStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Season_Year">
+    <End Role="Year" Type="Self.Year" Multiplicity="1" />
+    <End Role="Season" Type="Self.Season" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Year">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Season">
+        <PropertyRef Name="YearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemSetting_Season">
+    <End Role="Season" Type="Self.Season" Multiplicity="1" />
+    <End Role="SystemSetting" Type="Self.SystemSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Season">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SystemSetting">
+        <PropertyRef Name="CurrentSeasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemSetting_Year">
+    <End Role="Year" Type="Self.Year" Multiplicity="1" />
+    <End Role="SystemSetting" Type="Self.SystemSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Year">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SystemSetting">
+        <PropertyRef Name="CurrentYearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tb_county_tb_city">
     <End Role="tb_city" Type="Self.tb_city" Multiplicity="1" />
     <End Role="tb_county" Type="Self.tb_county" Multiplicity="*" />
@@ -114,11 +1954,487 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="DbMyadmModelStoreContainer">
+    <EntitySet Name="City" EntityType="Self.City" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="Contact" EntityType="Self.Contact" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ContactDocumentAggreement" EntityType="Self.ContactDocumentAggreement" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ContactType" EntityType="Self.ContactType" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ContactTypeRel" EntityType="Self.ContactTypeRel" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="DeclarationAnswer" EntityType="Self.DeclarationAnswer" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="DeclarationQuesiton" EntityType="Self.DeclarationQuesiton" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="DeclarationQuestionType" EntityType="Self.DeclarationQuestionType" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="District" EntityType="Self.District" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="Document" EntityType="Self.Document" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="DocumentInstance" EntityType="Self.DocumentInstance" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="DocumentStage" EntityType="Self.DocumentStage" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="FileType" EntityType="Self.FileType" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="LoginLog" EntityType="Self.LoginLog" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="Month" EntityType="Self.Month" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="RefenceResult" EntityType="Self.RefenceResult" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="Reference" EntityType="Self.Reference" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ReferenceContactType" EntityType="Self.ReferenceContactType" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ReferenceDeclarationAnswer" EntityType="Self.ReferenceDeclarationAnswer" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ReferenceFileUpload" EntityType="Self.ReferenceFileUpload" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ReferenceResultStatus" EntityType="Self.ReferenceResultStatus" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ReferenceResultStatusRejectReason" EntityType="Self.ReferenceResultStatusRejectReason" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarBankAccount" EntityType="Self.ScholarBankAccount" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarchipGiverApprovalStatus" EntityType="Self.ScholarchipGiverApprovalStatus" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarchipGiverCreditCardInfo" EntityType="Self.ScholarchipGiverCreditCardInfo" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarchipGiverCreditCardProvisining" EntityType="Self.ScholarchipGiverCreditCardProvisining" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarchipGiverSelectScholar" EntityType="Self.ScholarchipGiverSelectScholar" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarDeclarationAnswer" EntityType="Self.ScholarDeclarationAnswer" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarFileUpload" EntityType="Self.ScholarFileUpload" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarReceives" EntityType="Self.ScholarReceives" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarRequest" EntityType="Self.ScholarRequest" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarRequestRejectReason" EntityType="Self.ScholarRequestRejectReason" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarRequestSchoolInfo" EntityType="Self.ScholarRequestSchoolInfo" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarRequestStatus" EntityType="Self.ScholarRequestStatus" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="Scholarship" EntityType="Self.Scholarship" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="ScholarshipGiver" EntityType="Self.ScholarshipGiver" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="SchoolType" EntityType="Self.SchoolType" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="Season" EntityType="Self.Season" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="SystemSetting" EntityType="Self.SystemSetting" Schema="burs" store:Type="Tables" />
     <EntitySet Name="tb_city" EntityType="Self.tb_city" Schema="burs" store:Type="Tables" />
     <EntitySet Name="tb_contact" EntityType="Self.tb_contact" Schema="burs" store:Type="Tables" />
     <EntitySet Name="tb_county" EntityType="Self.tb_county" Schema="burs" store:Type="Tables" />
     <EntitySet Name="tb_producer" EntityType="Self.tb_producer" Schema="burs" store:Type="Tables" />
     <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="Year" EntityType="Self.Year" Schema="burs" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_City_Country" Association="Self.FK_City_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contact_Country" Association="Self.FK_Contact_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactDocumentAggreement_Contact" Association="Self.FK_ContactDocumentAggreement_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="ContactDocumentAggreement" EntitySet="ContactDocumentAggreement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactDocumentAggreement_Document" Association="Self.FK_ContactDocumentAggreement_Document">
+      <End Role="Document" EntitySet="Document" />
+      <End Role="ContactDocumentAggreement" EntitySet="ContactDocumentAggreement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactDocumentAggreement_Login" Association="Self.FK_ContactDocumentAggreement_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ContactDocumentAggreement" EntitySet="ContactDocumentAggreement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactDocumentAggreement_Login1" Association="Self.FK_ContactDocumentAggreement_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ContactDocumentAggreement" EntitySet="ContactDocumentAggreement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactTypeRel_Contact" Association="Self.FK_ContactTypeRel_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="ContactTypeRel" EntitySet="ContactTypeRel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactTypeRel_ContactType" Association="Self.FK_ContactTypeRel_ContactType">
+      <End Role="ContactType" EntitySet="ContactType" />
+      <End Role="ContactTypeRel" EntitySet="ContactTypeRel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactTypeRel_Login" Association="Self.FK_ContactTypeRel_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ContactTypeRel" EntitySet="ContactTypeRel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactTypeRel_Login1" Association="Self.FK_ContactTypeRel_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ContactTypeRel" EntitySet="ContactTypeRel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeclarationAnswer_DeclarationQuesiton" Association="Self.FK_DeclarationAnswer_DeclarationQuesiton">
+      <End Role="DeclarationQuesiton" EntitySet="DeclarationQuesiton" />
+      <End Role="DeclarationAnswer" EntitySet="DeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeclarationAnswer_Login" Association="Self.FK_DeclarationAnswer_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="DeclarationAnswer" EntitySet="DeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeclarationAnswer_Login1" Association="Self.FK_DeclarationAnswer_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="DeclarationAnswer" EntitySet="DeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeclarationQuesiton_ContactType" Association="Self.FK_DeclarationQuesiton_ContactType">
+      <End Role="ContactType" EntitySet="ContactType" />
+      <End Role="DeclarationQuesiton" EntitySet="DeclarationQuesiton" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeclarationQuesiton_Login" Association="Self.FK_DeclarationQuesiton_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="DeclarationQuesiton" EntitySet="DeclarationQuesiton" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeclarationQuesiton_Login1" Association="Self.FK_DeclarationQuesiton_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="DeclarationQuesiton" EntitySet="DeclarationQuesiton" />
+    </AssociationSet>
+    <AssociationSet Name="FK_District_City" Association="Self.FK_District_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="District" EntitySet="District" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_DocumentStage" Association="Self.FK_Document_DocumentStage">
+      <End Role="DocumentStage" EntitySet="DocumentStage" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_DocumentType" Association="Self.FK_Document_DocumentType">
+      <End Role="DocumentType" EntitySet="DocumentType" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_Login" Association="Self.FK_Document_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_Login1" Association="Self.FK_Document_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentInstance_Contact" Association="Self.FK_DocumentInstance_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="DocumentInstance" EntitySet="DocumentInstance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentInstance_Document" Association="Self.FK_DocumentInstance_Document">
+      <End Role="Document" EntitySet="Document" />
+      <End Role="DocumentInstance" EntitySet="DocumentInstance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentInstance_DocumentStage" Association="Self.FK_DocumentInstance_DocumentStage">
+      <End Role="DocumentStage" EntitySet="DocumentStage" />
+      <End Role="DocumentInstance" EntitySet="DocumentInstance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentInstance_Login" Association="Self.FK_DocumentInstance_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="DocumentInstance" EntitySet="DocumentInstance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentInstance_Login1" Association="Self.FK_DocumentInstance_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="DocumentInstance" EntitySet="DocumentInstance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Login_Contact" Association="Self.FK_Login_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Login" EntitySet="Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginLog_Login" Association="Self.FK_LoginLog_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="LoginLog" EntitySet="LoginLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefenceResult_Login" Association="Self.FK_RefenceResult_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="RefenceResult" EntitySet="RefenceResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefenceResult_Login1" Association="Self.FK_RefenceResult_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="RefenceResult" EntitySet="RefenceResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefenceResult_RefenceResult" Association="Self.FK_RefenceResult_RefenceResult">
+      <End Role="ReferenceResultStatusRejectReason" EntitySet="ReferenceResultStatusRejectReason" />
+      <End Role="RefenceResult" EntitySet="RefenceResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefenceResult_Reference" Association="Self.FK_RefenceResult_Reference">
+      <End Role="Reference" EntitySet="Reference" />
+      <End Role="RefenceResult" EntitySet="RefenceResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefenceResult_ReferenceResultStatus" Association="Self.FK_RefenceResult_ReferenceResultStatus">
+      <End Role="ReferenceResultStatus" EntitySet="ReferenceResultStatus" />
+      <End Role="RefenceResult" EntitySet="RefenceResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_City" Association="Self.FK_Reference_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Reference" EntitySet="Reference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Contact" Association="Self.FK_Reference_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Reference" EntitySet="Reference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Contact1" Association="Self.FK_Reference_Contact1">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Reference" EntitySet="Reference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Country" Association="Self.FK_Reference_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Reference" EntitySet="Reference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_District" Association="Self.FK_Reference_District">
+      <End Role="District" EntitySet="District" />
+      <End Role="Reference" EntitySet="Reference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Login" Association="Self.FK_Reference_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="Reference" EntitySet="Reference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_Login1" Association="Self.FK_Reference_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="Reference" EntitySet="Reference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reference_ReferenceContactType" Association="Self.FK_Reference_ReferenceContactType">
+      <End Role="ReferenceContactType" EntitySet="ReferenceContactType" />
+      <End Role="Reference" EntitySet="Reference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceDeclarationAnswer_DeclarationAnswer" Association="Self.FK_ReferenceDeclarationAnswer_DeclarationAnswer">
+      <End Role="DeclarationAnswer" EntitySet="DeclarationAnswer" />
+      <End Role="ReferenceDeclarationAnswer" EntitySet="ReferenceDeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceDeclarationAnswer_DeclarationQuesiton" Association="Self.FK_ReferenceDeclarationAnswer_DeclarationQuesiton">
+      <End Role="DeclarationQuesiton" EntitySet="DeclarationQuesiton" />
+      <End Role="ReferenceDeclarationAnswer" EntitySet="ReferenceDeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceDeclarationAnswer_Login" Association="Self.FK_ReferenceDeclarationAnswer_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ReferenceDeclarationAnswer" EntitySet="ReferenceDeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceDeclarationAnswer_Login1" Association="Self.FK_ReferenceDeclarationAnswer_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ReferenceDeclarationAnswer" EntitySet="ReferenceDeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceDeclarationAnswer_Reference" Association="Self.FK_ReferenceDeclarationAnswer_Reference">
+      <End Role="Reference" EntitySet="Reference" />
+      <End Role="ReferenceDeclarationAnswer" EntitySet="ReferenceDeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceDeclarationAnswer_ScholarRequest" Association="Self.FK_ReferenceDeclarationAnswer_ScholarRequest">
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+      <End Role="ReferenceDeclarationAnswer" EntitySet="ReferenceDeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceFileUpload_FileType" Association="Self.FK_ReferenceFileUpload_FileType">
+      <End Role="FileType" EntitySet="FileType" />
+      <End Role="ReferenceFileUpload" EntitySet="ReferenceFileUpload" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceFileUpload_Login" Association="Self.FK_ReferenceFileUpload_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ReferenceFileUpload" EntitySet="ReferenceFileUpload" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceFileUpload_Login1" Association="Self.FK_ReferenceFileUpload_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ReferenceFileUpload" EntitySet="ReferenceFileUpload" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceFileUpload_Reference" Association="Self.FK_ReferenceFileUpload_Reference">
+      <End Role="Reference" EntitySet="Reference" />
+      <End Role="ReferenceFileUpload" EntitySet="ReferenceFileUpload" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarBankAccount_Login" Association="Self.FK_ScholarBankAccount_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarBankAccount" EntitySet="ScholarBankAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarBankAccount_Login1" Association="Self.FK_ScholarBankAccount_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarBankAccount" EntitySet="ScholarBankAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverCreditCardInfo_Contact" Association="Self.FK_ScholarchipGiverCreditCardInfo_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="ScholarchipGiverCreditCardInfo" EntitySet="ScholarchipGiverCreditCardInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverCreditCardInfo_Login" Association="Self.FK_ScholarchipGiverCreditCardInfo_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarchipGiverCreditCardInfo" EntitySet="ScholarchipGiverCreditCardInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverCreditCardInfo_Login1" Association="Self.FK_ScholarchipGiverCreditCardInfo_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarchipGiverCreditCardInfo" EntitySet="ScholarchipGiverCreditCardInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverCreditCardProvisining_Login" Association="Self.FK_ScholarchipGiverCreditCardProvisining_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarchipGiverCreditCardProvisining" EntitySet="ScholarchipGiverCreditCardProvisining" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverCreditCardProvisining_Login1" Association="Self.FK_ScholarchipGiverCreditCardProvisining_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarchipGiverCreditCardProvisining" EntitySet="ScholarchipGiverCreditCardProvisining" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverCreditCardProvisining_Month" Association="Self.FK_ScholarchipGiverCreditCardProvisining_Month">
+      <End Role="Month" EntitySet="Month" />
+      <End Role="ScholarchipGiverCreditCardProvisining" EntitySet="ScholarchipGiverCreditCardProvisining" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverCreditCardProvisining_Year" Association="Self.FK_ScholarchipGiverCreditCardProvisining_Year">
+      <End Role="Year" EntitySet="Year" />
+      <End Role="ScholarchipGiverCreditCardProvisining" EntitySet="ScholarchipGiverCreditCardProvisining" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverSelectScholar_Contact" Association="Self.FK_ScholarchipGiverSelectScholar_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="ScholarchipGiverSelectScholar" EntitySet="ScholarchipGiverSelectScholar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverSelectScholar_Login" Association="Self.FK_ScholarchipGiverSelectScholar_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarchipGiverSelectScholar" EntitySet="ScholarchipGiverSelectScholar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverSelectScholar_Login1" Association="Self.FK_ScholarchipGiverSelectScholar_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarchipGiverSelectScholar" EntitySet="ScholarchipGiverSelectScholar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverSelectScholar_ScholarRequest" Association="Self.FK_ScholarchipGiverSelectScholar_ScholarRequest">
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+      <End Role="ScholarchipGiverSelectScholar" EntitySet="ScholarchipGiverSelectScholar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverSelectScholar_Season" Association="Self.FK_ScholarchipGiverSelectScholar_Season">
+      <End Role="Season" EntitySet="Season" />
+      <End Role="ScholarchipGiverSelectScholar" EntitySet="ScholarchipGiverSelectScholar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarchipGiverSelectScholar_Year" Association="Self.FK_ScholarchipGiverSelectScholar_Year">
+      <End Role="Year" EntitySet="Year" />
+      <End Role="ScholarchipGiverSelectScholar" EntitySet="ScholarchipGiverSelectScholar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarDeclarationAnswer_DeclarationAnswer" Association="Self.FK_ScholarDeclarationAnswer_DeclarationAnswer">
+      <End Role="DeclarationAnswer" EntitySet="DeclarationAnswer" />
+      <End Role="ScholarDeclarationAnswer" EntitySet="ScholarDeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarDeclarationAnswer_DeclarationQuesiton" Association="Self.FK_ScholarDeclarationAnswer_DeclarationQuesiton">
+      <End Role="DeclarationQuesiton" EntitySet="DeclarationQuesiton" />
+      <End Role="ScholarDeclarationAnswer" EntitySet="ScholarDeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarDeclarationAnswer_Login" Association="Self.FK_ScholarDeclarationAnswer_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarDeclarationAnswer" EntitySet="ScholarDeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarDeclarationAnswer_Login1" Association="Self.FK_ScholarDeclarationAnswer_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarDeclarationAnswer" EntitySet="ScholarDeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarDeclarationAnswer_ScholarRequest" Association="Self.FK_ScholarDeclarationAnswer_ScholarRequest">
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+      <End Role="ScholarDeclarationAnswer" EntitySet="ScholarDeclarationAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarFileUpload_FileType" Association="Self.FK_ScholarFileUpload_FileType">
+      <End Role="FileType" EntitySet="FileType" />
+      <End Role="ScholarFileUpload" EntitySet="ScholarFileUpload" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarFileUpload_Login" Association="Self.FK_ScholarFileUpload_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarFileUpload" EntitySet="ScholarFileUpload" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarFileUpload_Login1" Association="Self.FK_ScholarFileUpload_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarFileUpload" EntitySet="ScholarFileUpload" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarFileUpload_ScholarRequest" Association="Self.FK_ScholarFileUpload_ScholarRequest">
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+      <End Role="ScholarFileUpload" EntitySet="ScholarFileUpload" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarReceives_Contact" Association="Self.FK_ScholarReceives_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="ScholarReceives" EntitySet="ScholarReceives" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarReceives_Login" Association="Self.FK_ScholarReceives_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarReceives" EntitySet="ScholarReceives" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarReceives_Login1" Association="Self.FK_ScholarReceives_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarReceives" EntitySet="ScholarReceives" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarReceives_Month" Association="Self.FK_ScholarReceives_Month">
+      <End Role="Month" EntitySet="Month" />
+      <End Role="ScholarReceives" EntitySet="ScholarReceives" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarReceives_ScholarBankAccount" Association="Self.FK_ScholarReceives_ScholarBankAccount">
+      <End Role="ScholarBankAccount" EntitySet="ScholarBankAccount" />
+      <End Role="ScholarReceives" EntitySet="ScholarReceives" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarReceives_ScholarReceives" Association="Self.FK_ScholarReceives_ScholarReceives">
+      <End Role="ScholarReceives" EntitySet="ScholarReceives" />
+      <End Role="ScholarReceives1" EntitySet="ScholarReceives" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarReceives_Season" Association="Self.FK_ScholarReceives_Season">
+      <End Role="Season" EntitySet="Season" />
+      <End Role="ScholarReceives" EntitySet="ScholarReceives" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarReceives_Year" Association="Self.FK_ScholarReceives_Year">
+      <End Role="Year" EntitySet="Year" />
+      <End Role="ScholarReceives" EntitySet="ScholarReceives" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequest_City" Association="Self.FK_ScholarRequest_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequest_Contact" Association="Self.FK_ScholarRequest_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequest_Country" Association="Self.FK_ScholarRequest_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequest_District" Association="Self.FK_ScholarRequest_District">
+      <End Role="District" EntitySet="District" />
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequest_Login" Association="Self.FK_ScholarRequest_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequest_Login1" Association="Self.FK_ScholarRequest_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequest_ScholarRequestRejectReason" Association="Self.FK_ScholarRequest_ScholarRequestRejectReason">
+      <End Role="ScholarRequestRejectReason" EntitySet="ScholarRequestRejectReason" />
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequest_ScholarRequestStatus" Association="Self.FK_ScholarRequest_ScholarRequestStatus">
+      <End Role="ScholarRequestStatus" EntitySet="ScholarRequestStatus" />
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequest_Season" Association="Self.FK_ScholarRequest_Season">
+      <End Role="Season" EntitySet="Season" />
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequest_Year" Association="Self.FK_ScholarRequest_Year">
+      <End Role="Year" EntitySet="Year" />
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequestSchoolInfo_City" Association="Self.FK_ScholarRequestSchoolInfo_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="ScholarRequestSchoolInfo" EntitySet="ScholarRequestSchoolInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequestSchoolInfo_Country" Association="Self.FK_ScholarRequestSchoolInfo_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="ScholarRequestSchoolInfo" EntitySet="ScholarRequestSchoolInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequestSchoolInfo_District" Association="Self.FK_ScholarRequestSchoolInfo_District">
+      <End Role="District" EntitySet="District" />
+      <End Role="ScholarRequestSchoolInfo" EntitySet="ScholarRequestSchoolInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequestSchoolInfo_Login" Association="Self.FK_ScholarRequestSchoolInfo_Login">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarRequestSchoolInfo" EntitySet="ScholarRequestSchoolInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequestSchoolInfo_Login1" Association="Self.FK_ScholarRequestSchoolInfo_Login1">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="ScholarRequestSchoolInfo" EntitySet="ScholarRequestSchoolInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequestSchoolInfo_ScholarRequest" Association="Self.FK_ScholarRequestSchoolInfo_ScholarRequest">
+      <End Role="ScholarRequest" EntitySet="ScholarRequest" />
+      <End Role="ScholarRequestSchoolInfo" EntitySet="ScholarRequestSchoolInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarRequestSchoolInfo_SchoolType" Association="Self.FK_ScholarRequestSchoolInfo_SchoolType">
+      <End Role="SchoolType" EntitySet="SchoolType" />
+      <End Role="ScholarRequestSchoolInfo" EntitySet="ScholarRequestSchoolInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Scholarship_Contact" Association="Self.FK_Scholarship_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="Scholarship" EntitySet="Scholarship" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Scholarship_Season" Association="Self.FK_Scholarship_Season">
+      <End Role="Season" EntitySet="Season" />
+      <End Role="Scholarship" EntitySet="Scholarship" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Scholarship_Year" Association="Self.FK_Scholarship_Year">
+      <End Role="Year" EntitySet="Year" />
+      <End Role="Scholarship" EntitySet="Scholarship" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarshipGiver_Contact" Association="Self.FK_ScholarshipGiver_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="ScholarshipGiver" EntitySet="ScholarshipGiver" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScholarshipGiver_ScholarchipGiverApprovalStatus" Association="Self.FK_ScholarshipGiver_ScholarchipGiverApprovalStatus">
+      <End Role="ScholarchipGiverApprovalStatus" EntitySet="ScholarchipGiverApprovalStatus" />
+      <End Role="ScholarshipGiver" EntitySet="ScholarshipGiver" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Season_Year" Association="Self.FK_Season_Year">
+      <End Role="Year" EntitySet="Year" />
+      <End Role="Season" EntitySet="Season" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemSetting_Season" Association="Self.FK_SystemSetting_Season">
+      <End Role="Season" EntitySet="Season" />
+      <End Role="SystemSetting" EntitySet="SystemSetting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemSetting_Year" Association="Self.FK_SystemSetting_Year">
+      <End Role="Year" EntitySet="Year" />
+      <End Role="SystemSetting" EntitySet="SystemSetting" />
+    </AssociationSet>
     <AssociationSet Name="FK_tb_county_tb_city" Association="Self.FK_tb_county_tb_city">
       <End Role="tb_city" EntitySet="tb_city" />
       <End Role="tb_county" EntitySet="tb_county" />

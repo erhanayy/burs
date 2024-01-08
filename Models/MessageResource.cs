@@ -9,6 +9,7 @@ namespace MyAdmin.Models
     {
         public static string SessionKeyofUserName = "sun"; 
         public static string SessionKeyofPassword = "spsw";
+        public static int SessionKeyofId = 0;
         public static string PleaseSelectText = "Seciniz";
         public static string SearchListNameofProducer = "slnop";
 

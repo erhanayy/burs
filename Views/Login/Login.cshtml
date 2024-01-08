@@ -1,4 +1,4 @@
-﻿@model MyAdmin.Models.tb_user
+﻿@model YourNamespace.ViewModels.LoginViewModel
 
 @{
     Layout = null;
@@ -57,25 +57,27 @@
             <h3 class="form-title">Kullanıcı Giriş Ekranı</h3>
             <div class="alert alert-danger display-hide">
                 <button class="close" data-close="alert"></button>
-                <span> Kullanıcı adı ve şifrenizi giriniz </span>
+                <span> HATA METNİ </span>
             </div>
             <div class="form-group">
                 <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                 <label class="control-label visible-ie8 visible-ie9">Kullanıcı Adı</label>
                 <div class="input-icon">
                     <i class="fa fa-user"></i>
-                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control placeholder-no-fix soe", @placeholder = "Kullanıcı Adı", @autocomplete = "off", @tabindex = "1" })
+                    @Html.TextBoxFor(m => m.Login.UserName, new { @class = "form-control placeholder-no-fix soe", @placeholder = "Kullanıcı Adı", @autocomplete = "off", @tabindex = "1" })
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label visible-ie8 visible-ie9">Şifre</label>
                 <div class="input-icon">
                     <i class="fa fa-lock"></i>
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control placeholder-no-fix soe", @placeholder = "Şifre", @autocomplete = "off", @tabindex = "2" })
+                    @Html.PasswordFor(m => m.Login.Password, new { @class = "form-control placeholder-no-fix soe", @placeholder = "Şifre", @autocomplete = "off", @tabindex = "2" })
                 </div>
             </div>
             <div class="form-actions">
                 <button type="submit" class="btn green pull-right" id="btnLogin" tabindex="3"> Giriş </button>
+                    <!-- şu alttaki butonu kayıt olma sayfasına yönlendşrmesi için ekledim-->
+                    <a href="@Url.Action("Register","Register")" class="btn green pull-left" id="btnLogin" tabindex="4">Kayıt Ol</a>
                 <br />
             </div>
         </form>
@@ -153,36 +155,64 @@
             return $('#frm').valid();
         });
 
+        //şifrelerin eşitlik kontrolü 
+        $.validator.addMethod("notEqual", function (value, element, param) {
+            return this.optional(element) || value !== $(param).val();
+        }, "Kullanıcı adı ve şifre aynı olamaz.");
+
         $('#frm').validate({
             rules: {
                 'UserName': {
-                    minlength: 1,
+                    minlength: 3,
                     maxlength: 100,
                     required: true
                 },
                 'Password': {
-                    minlength: 1,
+                    minlength: 6,
                     maxlength: 100,
-                    required: true
-                }
+                    required: true,
+                    notEqual: '#UserName'
+                },
+            },
+            messages: {
+                'UserName': {
+                    required: "Kullanıcı adı zorunludur.",
+                    minlength: "Kullanıcı adı en az {0} karakter olmalıdır.",
+                    maxlength: "Kullanıcı adı en fazla {0} karakter olmalıdır."
+                },
+                'Password': {
+                    required: "Şifre zorunludur.",
+                    minlength: "Şifre en az {0} karakter olmalıdır.",
+                    maxlength: "Şifre en fazla {0} karakter olmalıdır.",
+                    notEqual: "Şifre, kullanıcı adıyla aynı olamaz."
+                },
             },
             invalidHandler: function (event, validator) {
                 var error = $('.alert-danger', $(this));
+                error.empty();
+
+                error.append('<button class="close" data-close="alert"></button>');
+
+                var errors = validator.errorMap;
+
+                $.each(errors, function (key, value) {
+
+                    error.append(value);
+
+                });
                 error.show();
                 App.scrollTo(error, -200);
                 return false;
             },
+
             highlight: function (element) {
-                $(element)
-                    .closest('.form-group').addClass('has-error');
+                $(element).closest('.form-group').addClass('has-error');
             },
             unhighlight: function (element) {
-                $(element)
-                    .closest('.form-group').removeClass('has-error');
+                $(element).closest('.form-group').removeClass('has-error');
             },
             success: function (label) {
-                label
-                    .closest('.form-group').removeClass('has-error');
+                label.closest('.form-group').removeClass('has-error');
             },
             submitHandler: function (form) {
                 $('.alert-danger', $(this)).hide();
