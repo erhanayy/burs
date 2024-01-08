@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -48,12 +49,15 @@ namespace MyAdmin.Controllers
             if (Id > 0)
             {
                 itemtype.GetProperty("UpdatedBy").SetValue(item, this.ActiveUserId);
-                itemtype.GetProperty("UpdatedDate").SetValue(item, DateTime.Now);
+                itemtype.GetProperty("UpdatedDate").SetValue(item, (DateTime.Now));
             }
             else
             {
                 itemtype.GetProperty("CreatedBy").SetValue(item, this.ActiveUserId);
-                itemtype.GetProperty("CreationDate").SetValue(item, DateTime.Now);                
+                
+                itemtype.GetProperty("CreatedDate").SetValue(item, (DateTime.Now));
+                itemtype.GetProperty("UpdatedBy").SetValue(item, this.ActiveUserId);
+                itemtype.GetProperty("UpdatedDate").SetValue(item, DateTime.Now);
             }
         }
 

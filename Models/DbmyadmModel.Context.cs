@@ -30,5 +30,49 @@ namespace MyAdmin.Models
         public virtual DbSet<tb_county> tb_county { get; set; }
         public virtual DbSet<tb_producer> tb_producer { get; set; }
         public virtual DbSet<tb_user> tb_user { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<ContactDocumentAggreement> ContactDocumentAggreements { get; set; }
+        public virtual DbSet<ContactType> ContactTypes { get; set; }
+        public virtual DbSet<ContactTypeRel> ContactTypeRels { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<DeclarationAnswer> DeclarationAnswers { get; set; }
+        public virtual DbSet<DeclarationQuesiton> DeclarationQuesitons { get; set; }
+        public virtual DbSet<DeclarationQuestionType> DeclarationQuestionTypes { get; set; }
+        public virtual DbSet<District> Districts { get; set; }
+        public virtual DbSet<Document> Documents { get; set; }
+        public virtual DbSet<DocumentInstance> DocumentInstances { get; set; }
+        public virtual DbSet<DocumentStage> DocumentStages { get; set; }
+        public virtual DbSet<DocumentType> DocumentTypes { get; set; }
+        public virtual DbSet<FileType> FileTypes { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
+        public virtual DbSet<LoginLog> LoginLogs { get; set; }
+        public virtual DbSet<Month> Months { get; set; }
+        public virtual DbSet<RefenceResult> RefenceResults { get; set; }
+        public virtual DbSet<Reference> References { get; set; }
+        public virtual DbSet<ReferenceContactType> ReferenceContactTypes { get; set; }
+        public virtual DbSet<ReferenceDeclarationAnswer> ReferenceDeclarationAnswers { get; set; }
+        public virtual DbSet<ReferenceFileUpload> ReferenceFileUploads { get; set; }
+        public virtual DbSet<ReferenceResultStatu> ReferenceResultStatus { get; set; }
+        public virtual DbSet<ReferenceResultStatusRejectReason> ReferenceResultStatusRejectReasons { get; set; }
+        public virtual DbSet<ScholarBankAccount> ScholarBankAccounts { get; set; }
+        public virtual DbSet<ScholarchipGiverApprovalStatu> ScholarchipGiverApprovalStatus { get; set; }
+        public virtual DbSet<ScholarchipGiverCreditCardInfo> ScholarchipGiverCreditCardInfoes { get; set; }
+        public virtual DbSet<ScholarchipGiverCreditCardProvisining> ScholarchipGiverCreditCardProvisinings { get; set; }
+        public virtual DbSet<ScholarchipGiverSelectScholar> ScholarchipGiverSelectScholars { get; set; }
+        public virtual DbSet<ScholarDeclarationAnswer> ScholarDeclarationAnswers { get; set; }
+        public virtual DbSet<ScholarFileUpload> ScholarFileUploads { get; set; }
+        public virtual DbSet<ScholarReceive> ScholarReceives { get; set; }
+        public virtual DbSet<ScholarRequest> ScholarRequests { get; set; }
+        public virtual DbSet<ScholarRequestRejectReason> ScholarRequestRejectReasons { get; set; }
+        public virtual DbSet<ScholarRequestSchoolInfo> ScholarRequestSchoolInfoes { get; set; }
+        public virtual DbSet<ScholarRequestStatu> ScholarRequestStatus { get; set; }
+        public virtual DbSet<Scholarship> Scholarships { get; set; }
+        public virtual DbSet<ScholarshipGiver> ScholarshipGivers { get; set; }
+        public virtual DbSet<SchoolType> SchoolTypes { get; set; }
+        public virtual DbSet<Season> Seasons { get; set; }
+        public virtual DbSet<SystemSetting> SystemSettings { get; set; }
+        public virtual DbSet<Year> Years { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

@@ -1,0 +1,6 @@
+Web.config
+Web.Debug.config
+Web.Release.config
+.vs/
+Web.config
+.vs/MyAdmin/config/applicationhost.config

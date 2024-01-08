@@ -14,6 +14,158 @@
         <AssociationConnector Association="DbMyadmModel.FK_tb_producer_tb_city" />
         <AssociationConnector Association="DbMyadmModel.FK_tb_producer_tb_contact" />
         <AssociationConnector Association="DbMyadmModel.FK_tb_producer_tb_county" />
+        <EntityTypeShape EntityType="DbMyadmModel.City" Width="1.5" PointX="10.625" PointY="51.25" />
+        <EntityTypeShape EntityType="DbMyadmModel.Contact" Width="1.5" PointX="10.625" PointY="43.125" />
+        <EntityTypeShape EntityType="DbMyadmModel.ContactDocumentAggreement" Width="1.5" PointX="15.125" PointY="55.125" />
+        <EntityTypeShape EntityType="DbMyadmModel.ContactType" Width="1.5" PointX="15.875" PointY="59.875" />
+        <EntityTypeShape EntityType="DbMyadmModel.ContactTypeRel" Width="1.5" PointX="18.125" PointY="59.25" />
+        <EntityTypeShape EntityType="DbMyadmModel.Country" Width="1.5" PointX="8.375" PointY="46.125" />
+        <EntityTypeShape EntityType="DbMyadmModel.DeclarationAnswer" Width="1.5" PointX="18.125" PointY="64" />
+        <EntityTypeShape EntityType="DbMyadmModel.DeclarationQuesiton" Width="1.5" PointX="18.125" PointY="69" />
+        <EntityTypeShape EntityType="DbMyadmModel.DeclarationQuestionType" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DbMyadmModel.District" Width="1.5" PointX="12.875" PointY="51.375" />
+        <EntityTypeShape EntityType="DbMyadmModel.Document" Width="1.5" PointX="15.125" PointY="63.75" />
+        <EntityTypeShape EntityType="DbMyadmModel.DocumentInstance" Width="1.5" PointX="18.125" PointY="54" />
+        <EntityTypeShape EntityType="DbMyadmModel.DocumentStage" Width="1.5" PointX="12.875" PointY="72.125" />
+        <EntityTypeShape EntityType="DbMyadmModel.DocumentType" Width="1.5" PointX="12.875" PointY="57.5" />
+        <EntityTypeShape EntityType="DbMyadmModel.FileType" Width="1.5" PointX="21.125" PointY="46.375" />
+        <EntityTypeShape EntityType="DbMyadmModel.Login" Width="1.5" PointX="12.875" PointY="61.125" />
+        <EntityTypeShape EntityType="DbMyadmModel.LoginLog" Width="1.5" PointX="15.125" PointY="81.5" />
+        <EntityTypeShape EntityType="DbMyadmModel.Month" Width="1.5" PointX="12.875" PointY="75.875" />
+        <EntityTypeShape EntityType="DbMyadmModel.RefenceResult" Width="1.5" PointX="20.375" PointY="58.75" />
+        <EntityTypeShape EntityType="DbMyadmModel.Reference" Width="1.5" PointX="18.125" PointY="46.625" />
+        <EntityTypeShape EntityType="DbMyadmModel.ReferenceContactType" Width="1.5" PointX="15.875" PointY="41" />
+        <EntityTypeShape EntityType="DbMyadmModel.ReferenceDeclarationAnswer" Width="1.5" PointX="23.375" PointY="57.75" />
+        <EntityTypeShape EntityType="DbMyadmModel.ReferenceFileUpload" Width="1.5" PointX="23.375" PointY="53" />
+        <EntityTypeShape EntityType="DbMyadmModel.ReferenceResultStatu" Width="1.5" PointX="18.125" PointY="77.125" />
+        <EntityTypeShape EntityType="DbMyadmModel.ReferenceResultStatusRejectReason" Width="1.5" PointX="18.125" PointY="74.375" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarBankAccount" Width="1.5" PointX="15.125" PointY="88.875" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarchipGiverApprovalStatu" Width="1.5" PointX="10.625" PointY="35.75" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarchipGiverCreditCardInfo" Width="1.5" PointX="15.125" PointY="50" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarchipGiverCreditCardProvisining" Width="1.5" PointX="15.125" PointY="69" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarchipGiverSelectScholar" Width="1.5" PointX="26.375" PointY="54" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarDeclarationAnswer" Width="1.5" PointX="26.375" PointY="65.875" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarFileUpload" Width="1.5" PointX="23.375" PointY="62.875" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarReceive" Width="1.5" PointX="20.375" PointY="65.125" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarRequest" Width="1.5" PointX="21.125" PointY="50.625" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarRequestRejectReason" Width="1.5" PointX="18.875" PointY="43.625" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarRequestSchoolInfo" Width="1.5" PointX="26.375" PointY="58.625" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarRequestStatu" Width="1.5" PointX="18.875" PointY="40.375" />
+        <EntityTypeShape EntityType="DbMyadmModel.Scholarship" Width="1.5" PointX="15.875" PointY="44" />
+        <EntityTypeShape EntityType="DbMyadmModel.ScholarshipGiver" Width="1.5" PointX="12.875" PointY="44.75" />
+        <EntityTypeShape EntityType="DbMyadmModel.SchoolType" Width="1.5" PointX="24.125" PointY="67.5" />
+        <EntityTypeShape EntityType="DbMyadmModel.Season" Width="1.5" PointX="13.625" PointY="39" />
+        <EntityTypeShape EntityType="DbMyadmModel.SystemSetting" Width="1.5" PointX="15.875" PointY="37.75" />
+        <EntityTypeShape EntityType="DbMyadmModel.Year" Width="1.5" PointX="11.375" PointY="39.125" />
+        <EntityTypeShape EntityType="DbMyadmModel.sysdiagram" Width="1.5" PointX="8.375" PointY="3.75" />
+        <AssociationConnector Association="DbMyadmModel.FK_City_Country" />
+        <AssociationConnector Association="DbMyadmModel.FK_District_City" />
+        <AssociationConnector Association="DbMyadmModel.FK_Reference_City" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequest_City" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequestSchoolInfo_City" />
+        <AssociationConnector Association="DbMyadmModel.FK_Contact_Country" />
+        <AssociationConnector Association="DbMyadmModel.FK_ContactDocumentAggreement_Contact" />
+        <AssociationConnector Association="DbMyadmModel.FK_ContactTypeRel_Contact" />
+        <AssociationConnector Association="DbMyadmModel.FK_DocumentInstance_Contact" />
+        <AssociationConnector Association="DbMyadmModel.FK_Login_Contact" />
+        <AssociationConnector Association="DbMyadmModel.FK_Reference_Contact" />
+        <AssociationConnector Association="DbMyadmModel.FK_Reference_Contact1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverCreditCardInfo_Contact" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverSelectScholar_Contact" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarReceives_Contact" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequest_Contact" />
+        <AssociationConnector Association="DbMyadmModel.FK_Scholarship_Contact" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarshipGiver_Contact" />
+        <AssociationConnector Association="DbMyadmModel.FK_ContactDocumentAggreement_Document" />
+        <AssociationConnector Association="DbMyadmModel.FK_ContactDocumentAggreement_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ContactDocumentAggreement_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ContactTypeRel_ContactType" />
+        <AssociationConnector Association="DbMyadmModel.FK_DeclarationQuesiton_ContactType" />
+        <AssociationConnector Association="DbMyadmModel.FK_ContactTypeRel_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ContactTypeRel_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_Reference_Country" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequest_Country" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequestSchoolInfo_Country" />
+        <AssociationConnector Association="DbMyadmModel.FK_DeclarationAnswer_DeclarationQuesiton" />
+        <AssociationConnector Association="DbMyadmModel.FK_DeclarationAnswer_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_DeclarationAnswer_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ReferenceDeclarationAnswer_DeclarationAnswer" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarDeclarationAnswer_DeclarationAnswer" />
+        <AssociationConnector Association="DbMyadmModel.FK_DeclarationQuesiton_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_DeclarationQuesiton_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ReferenceDeclarationAnswer_DeclarationQuesiton" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarDeclarationAnswer_DeclarationQuesiton" />
+        <AssociationConnector Association="DbMyadmModel.FK_Reference_District" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequest_District" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequestSchoolInfo_District" />
+        <AssociationConnector Association="DbMyadmModel.FK_Document_DocumentStage" />
+        <AssociationConnector Association="DbMyadmModel.FK_Document_DocumentType" />
+        <AssociationConnector Association="DbMyadmModel.FK_Document_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_Document_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_DocumentInstance_Document" />
+        <AssociationConnector Association="DbMyadmModel.FK_DocumentInstance_DocumentStage" />
+        <AssociationConnector Association="DbMyadmModel.FK_DocumentInstance_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_DocumentInstance_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ReferenceFileUpload_FileType" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarFileUpload_FileType" />
+        <AssociationConnector Association="DbMyadmModel.FK_LoginLog_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_RefenceResult_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_RefenceResult_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_Reference_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_Reference_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ReferenceDeclarationAnswer_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ReferenceDeclarationAnswer_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ReferenceFileUpload_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ReferenceFileUpload_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarBankAccount_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarBankAccount_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverCreditCardInfo_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverCreditCardInfo_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverCreditCardProvisining_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverCreditCardProvisining_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverSelectScholar_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverSelectScholar_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarDeclarationAnswer_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarDeclarationAnswer_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarFileUpload_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarFileUpload_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarReceives_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarReceives_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequest_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequest_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequestSchoolInfo_Login" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequestSchoolInfo_Login1" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverCreditCardProvisining_Month" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarReceives_Month" />
+        <AssociationConnector Association="DbMyadmModel.FK_RefenceResult_RefenceResult" />
+        <AssociationConnector Association="DbMyadmModel.FK_RefenceResult_Reference" />
+        <AssociationConnector Association="DbMyadmModel.FK_RefenceResult_ReferenceResultStatus" />
+        <AssociationConnector Association="DbMyadmModel.FK_Reference_ReferenceContactType" />
+        <AssociationConnector Association="DbMyadmModel.FK_ReferenceDeclarationAnswer_Reference" />
+        <AssociationConnector Association="DbMyadmModel.FK_ReferenceFileUpload_Reference" />
+        <AssociationConnector Association="DbMyadmModel.FK_ReferenceDeclarationAnswer_ScholarRequest" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarReceives_ScholarBankAccount" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarshipGiver_ScholarchipGiverApprovalStatus" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverCreditCardProvisining_Year" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverSelectScholar_ScholarRequest" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverSelectScholar_Season" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarchipGiverSelectScholar_Year" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarDeclarationAnswer_ScholarRequest" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarFileUpload_ScholarRequest" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarReceives_ScholarReceives" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarReceives_Season" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarReceives_Year" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequest_ScholarRequestRejectReason" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequest_ScholarRequestStatus" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequest_Season" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequest_Year" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequestSchoolInfo_ScholarRequest" />
+        <AssociationConnector Association="DbMyadmModel.FK_ScholarRequestSchoolInfo_SchoolType" />
+        <AssociationConnector Association="DbMyadmModel.FK_Scholarship_Season" />
+        <AssociationConnector Association="DbMyadmModel.FK_Scholarship_Year" />
+        <AssociationConnector Association="DbMyadmModel.FK_Season_Year" />
+        <AssociationConnector Association="DbMyadmModel.FK_SystemSetting_Season" />
+        <AssociationConnector Association="DbMyadmModel.FK_SystemSetting_Year" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
