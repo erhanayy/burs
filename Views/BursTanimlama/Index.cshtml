@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MyAdmin.Models.Scholarship>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Burs Tanımlama Ekranı</h2>
+
+<p>
+    @Html.ActionLink("Burs Oluştur", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Burs Adı
+        </th>
+        <th>
+            Burs Açıklaması
+        </th>
+        <th>
+            Burs Veren Sayısı
+        </th>
+        <th>
+            Burs Veren Aylık
+        </th>
+        <th>
+            Bursiyer Sayısı (?)
+        </th>
+        <th>
+            Bursiyer Aylık (?)
+        </th>
+        <th>
+            Ad
+        </th>
+        <th>
+            Dönem
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScholarshipName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScholarshipDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiverCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiverMonthlyDonateAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScholarCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScholarDonateAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Season.Season1)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
