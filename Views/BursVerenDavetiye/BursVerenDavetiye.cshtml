@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "BursVerenDavetiye";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Burs Veren Davetiye</h2>
+<hr />
+
+<form action="@Url.Action("SendInvitation", "Invitation")" method="post">
+    <div class="form-group row">
+        <label for="firstName" class="col-sm-2 col-form-label">Ad:</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Davet edilecek kişinin adı:" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="lastName" class="col-sm-2 col-form-label">Soyad:</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Davet edilecek kişinin soyadı:" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">E-posta:</label>
+        <div class="col-sm-5">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Davet edilecek kişinin E-posta adresi:" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="phoneNumber" class="col-sm-2 col-form-label">Telefon Numarası:</label>
+        <div class="col-sm-5">
+            <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" pattern="[0-9]{11}" placeholder="Davet edilecek kişinin telefonu:" required>
+            <small class="form-text text-muted">Örneğin: 05551234567</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-5 offset-sm-2">
+            <button type="submit" class="btn btn-primary">Gönder</button>
+        </div>
+    </div>
+</form>

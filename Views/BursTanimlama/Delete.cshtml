@@ -1,0 +1,97 @@
+﻿@model MyAdmin.Models.Scholarship
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bursu sil</h2>
+
+<h3>Silmek istediğinizden emin misiniz?</h3>
+<div>
+    <h4>Burs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ScholarshipName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScholarshipName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScholarshipDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScholarshipDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiverCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiverCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiverMonthlyDonateAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiverMonthlyDonateAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScholarCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScholarCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScholarDonateAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScholarDonateAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Season.Season1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Season.Season1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year.Code)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Bursu sil" class="btn btn-default" /> |
+            @Html.ActionLink("Geri dön", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,101 @@
+﻿@model MyAdmin.Models.Scholarship
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Düzenle</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Burs</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        <label class="col-md-1">Ad</label>
+        <div class="col-md-10">
+            @Html.DropDownList("ScholarshipOwnerContactId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ScholarshipOwnerContactId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-1">Burs Adı</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ScholarshipName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ScholarshipName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-1">Burs Detayı</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ScholarshipDescription, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ScholarshipDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-1">Yıl</label>
+        <div class="col-md-10">
+            @Html.DropDownList("YearId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.YearId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-1">Dönem</label>
+        <div class="col-md-10">
+            @Html.DropDownList("SeasonId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SeasonId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-1">Burs Veren Sayısı</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GiverCount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GiverCount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-1">Burs Veren Aylık</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GiverMonthlyDonateAmount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GiverMonthlyDonateAmount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-1">Bursiyer Sayısı</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ScholarCount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ScholarCount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-1">Bursiyer Aylık</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ScholarDonateAmount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ScholarDonateAmount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-1 col-md-10">
+            <input type="submit" value="Güncelle" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "Index")
+</div>
